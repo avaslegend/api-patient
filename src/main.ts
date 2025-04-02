@@ -4,13 +4,20 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ReplaySubject, firstValueFrom } from 'rxjs';
 import { configure as serverlessExpress } from '@codegenie/serverless-express';
 import { Callback, Handler, Context } from 'aws-lambda';
+import {  ValidationPipe} from '@nestjs/common';
 
 const serverSubject = new ReplaySubject<Handler>();
 
 async function bootstrap(): Promise<Handler> {
     console.log('COLD START: Initializing Nest');
     const app = await NestFactory.create(AppModule);
-
+    
+    app.useGlobalPipes(
+        new ValidationPipe({
+            whitelist: true,
+            forbidNonWhitelisted: true,
+        })
+    );
     const config = new DocumentBuilder()
       .setTitle('Patients API')
       .setDescription('API RESTful para la gestión de pacientes')
