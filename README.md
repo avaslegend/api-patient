@@ -35,7 +35,7 @@ Ejecuta el siguiente comando:
    ```bash
     npm run test
    ```
-   
+
 ## Endpoints
 
 `/auth/login, POST`
@@ -72,3 +72,10 @@ Obtener token en el endpoint:
 `/auth/login, POST`
 
 Asignarle un usuario y contraseña
+
+Descargar e importar desde postman los archivos
+https://drive.google.com/file/d/1hA7QDoIhLZeF6YSqgLgedq-2tQTxnmbo/view?usp=sharing
+https://drive.google.com/file/d/1uQWjE9a_xgmwMcVtcAG62hgtMZZD-HKb/view?usp=sharing
+
+Desde el postman primero ejecutar el endpoint de Login
+Después ejecutar el endpoint que requiera revisar 
