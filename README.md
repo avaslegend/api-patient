@@ -1,11 +1,12 @@
 # NestJS Patients API (Serverless)
 
-API RESTful para gestionar pacientes, integrando:
+API RESTful para gestionar pacientes ha sido creado creado bajo los principios de arquitectura SOLID, clean architecture y está integrado por los siguientes recursos:
 - AWS Lambda, DynamoDB, API Gateway
 - NestJS
 - Serverless Framework
 - randomuser.me (para obtener datos automáticos al crear pacientes)
 - Autenticación básica con JWT (Lambda Authorizer)
+- GitHub Actions
 
 ## Requerimientos Previos
 
@@ -34,6 +35,7 @@ Ejecuta el siguiente comando:
    ```bash
     npm run test
    ```
+   
 ## Endpoints
 
 `/auth/login, POST`
