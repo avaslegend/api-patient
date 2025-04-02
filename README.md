@@ -35,7 +35,7 @@ Ejecuta el siguiente comando:
    ```bash
     npm run test
    ```
-   
+
 ## Endpoints
 
 `/auth/login, POST`
@@ -66,9 +66,13 @@ sls deploy --stage dev
 
 ## Ejecución
 
-Los endpoints requieren de un token
 
-Obtener token en el endpoint:
-`/auth/login, POST`
+Descargar e importar desde postman los archivos:
 
-Asignarle un usuario y contraseña
+`https://drive.google.com/file/d/1hA7QDoIhLZeF6YSqgLgedq-2tQTxnmbo/view?usp=sharing`
+
+`https://drive.google.com/file/d/1uQWjE9a_xgmwMcVtcAG62hgtMZZD-HKb/view?usp=sharing`
+
+Desde el postman primero ejecutar el endpoint Login que se encuentra en la coleccion Aditi/Dev. Este genera el token.
+Asignarle un usuario y contraseña.
+Después ejecutar el endpoint que requiera revisar.
