@@ -1,0 +1,98 @@
+service: patients-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  stage: dev
+  apiName: api-${self:service}-${self:custom.stage}
+  environment:
+    NODE_ENV: ${self:custom.stage}
+    PATIENT_DATA_TABLE: ${self:custom.patientDataTableName}
+    RANDOMUSER_API_URL: https://randomuser.me/api
+    JWT_SECRET: ${env:JWT_SECRET}
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:DeleteItem
+            - dynamodb:UpdateItem
+            - dynamodb:Query
+            - dynamodb:Scan
+          Resource: "*"
+
+functions:
+
+  api:
+    handler: dist/main.handler
+    events:
+      - http:
+          path: /patients
+          method: post
+          cors: true
+      - http:
+          path: /patients/{id}
+          method: get
+          cors: true
+      - http:
+          path: /patients/{id}
+          method: patch
+          cors: true
+      - http:
+          path: /patients/{id}
+          method: delete
+          cors: true
+      - http:
+          path: /patients
+          method: get
+          cors: true
+
+  auth:
+    handler: dist/auth/auth-lambda.handler
+    events:
+      - http:
+          path: /auth/login
+          method: post
+          cors: true
+    # No se expone como endpoint; se usa como authorizer en la config de rutas.
+
+# Definición de recursos (DynamoDB)
+resources:
+  Resources:
+    PatientsTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:custom.patientDataTableName}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: gender
+            AttributeType: S
+          - AttributeName: birthDate
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: GenderBirthDateIndex
+            KeySchema:
+              - AttributeName: gender
+                KeyType: HASH
+              - AttributeName: birthDate
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+plugins:
+  - serverless-offline
+
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  patientDataTableName: patient-data-${self:service}-${self:custom.stage}
