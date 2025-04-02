@@ -59,7 +59,8 @@ Para levantar la aplicacion de forma local:
 ```bash
 npx serverless offline
 ```
-Para desplegar la aplicacion:
+
+Para desplegar la aplicacion en el ambiente de desarrollo:
 ```bash
 sls deploy --stage dev
 ```
@@ -67,12 +68,17 @@ sls deploy --stage dev
 ## Ejecución
 
 
-Descargar e importar desde postman los archivos:
+Descargar e importar desde postman los archivos (la colección, ambiente local y dev):
 
 `https://drive.google.com/file/d/1hA7QDoIhLZeF6YSqgLgedq-2tQTxnmbo/view?usp=sharing`
 
 `https://drive.google.com/file/d/1uQWjE9a_xgmwMcVtcAG62hgtMZZD-HKb/view?usp=sharing`
 
+`https://drive.google.com/file/d/1X1ugdgilDvDNUOKym7rKUB5kFJ6qeVQx/view?usp=sharing`
+
+Elija el entorno a probar (local/dev) según corresponda seleccione el enviroment (local/dev) dentro del postman.
+
 Desde el postman primero ejecutar el endpoint Login que se encuentra en la coleccion Aditi/Dev. Este genera el token.
 Asignarle un usuario y contraseña.
+
 Después ejecutar el endpoint que requiera revisar.
