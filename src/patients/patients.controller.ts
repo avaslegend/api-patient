@@ -16,7 +16,7 @@ import {
   import { CreatePatientDto } from './dto/create-patient.dto';
   import { UpdatePatientDto } from './dto/update-patient.dto';
   import { FilterPatientDto } from './dto/filter-patient.dto';
-import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
+  import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)

@@ -1,6 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsString, IsDateString, IsNumber, IsIn } from 'class-validator';
-import { Type } from 'class-transformer';
 
 export class FilterPatientDto {
   @ApiPropertyOptional()

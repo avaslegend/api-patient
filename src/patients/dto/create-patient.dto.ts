@@ -5,7 +5,7 @@ export class CreatePatientDto {
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  firstName?: string; // Se llenará desde randomuser.me
+  firstName?: string; 
 
   @ApiProperty({ required: false })
   @IsString()
@@ -32,5 +32,4 @@ export class CreatePatientDto {
   @IsOptional()
   phone?: string;
 
-  // externalData se obtiene de randomuser.me
 }

@@ -51,7 +51,7 @@ export class PatientsRepository {
   }
 
   async findAll(filter: FilterPatientDto): Promise<{ items: Patient[] }> {
-    // Si se provee el filtro por gender y al menos un límite de fecha, usamos el GSI
+
     if (filter.gender && (filter.birthDateBefore || filter.birthDateAfter)) {
       let keyCondition = 'gender = :g';
       const expressionValues: { [key: string]: any } = {
@@ -82,7 +82,7 @@ export class PatientsRepository {
         items: result.Items as Patient[],
       };
     } else {
-      // Usamos un Scan con FilterExpression si se proveen otros filtros.
+
       const params: DynamoDB.DocumentClient.ScanInput = {
         TableName: this.tableName,
       };

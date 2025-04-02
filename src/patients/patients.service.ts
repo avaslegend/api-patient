@@ -18,7 +18,7 @@ export class PatientsService {
 
     const patient: Patient = {
       id: uuid(),
-      firstName: randomData.name.first, // Se sobreescribe o se usa el dato del DTO
+      firstName: randomData.name.first, 
       lastName: dto.lastName || '',
       gender: dto.gender as "male" | "female" | "other",
       birthDate: dto.birthDate || '',
@@ -47,7 +47,7 @@ export class PatientsService {
   async updatePatient(id: string, dto: UpdatePatientDto) {
     const existing = await this.getPatientById(id);
 
-    // Actualizamos solo los campos recibidos
+
     const updated = {
       ...existing,
       ...dto,
@@ -59,7 +59,7 @@ export class PatientsService {
   }
 
   async deletePatient(id: string) {
-    await this.getPatientById(id); // Para lanzar excepción si no existe
+    await this.getPatientById(id); 
     return this.patientsRepository.delete(id);
   }
 

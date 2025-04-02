@@ -9,36 +9,64 @@ API RESTful para gestionar pacientes, integrando:
 
 ## Requerimientos Previos
 
-- Node.js (versión 16 o superior)
+- Node.js (versión 20 o superior)
 - Serverless Framework instalado globalmente (`npm i -g serverless`)
 - Una cuenta de AWS configurada (credenciales en `~/.aws/credentials`)
 
-## Instalación
+## Configuración e Instalación
 
 1. Clona este repositorio.
 2. Instala dependencias:
    ```bash
    npm install
-
-
-Se requiere instalar AWS
-
-Configurar AWS
-
-aws configure
-
+3. Duplica el archivo .env.template a .env e ingresa la firma para el jwt token en la variable de entorno JWT_SECRET.
+4. Compila la aplicación desde la raíz del proyecto
+   ```bash
+   npm run build
+   ```
 Para el uso de serverless framework V4
 
 Crearse una cuenta en Serverless framework y crear un provider (AWS) 
 
-Para compilar el proyecto ejecutar :
+## Unit Testing
 
-npm run build
+Ejecuta el siguiente comando:
+   ```bash
+    npm run test
+   ```
+## Endpoints
+
+`/auth/login, POST`
+
+`/patients, POST`
+
+`/patients/:id, GET`
+
+`/patients/:id, PATCH`
+
+`/patients/:id, DELETE`
+
+`/patients, GET`
+
+
+
+## Despliegue
+
 
 Para levantar la aplicacion de forma local:
-
+```bash
 npx serverless offline
-
+```
 Para desplegar la aplicacion:
-
+```bash
 sls deploy --stage dev
+```
+
+## Ejecución
+
+Los endpoints requieren de un token
+
+Obtener token en el endpoint:
+`/auth/login, POST`
+
+Asignarle un usuario y contraseña

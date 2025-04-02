@@ -11,7 +11,6 @@ async function bootstrap(): Promise<Handler> {
     console.log('COLD START: Initializing Nest');
     const app = await NestFactory.create(AppModule);
 
-    // Configuración de Swagger
     const config = new DocumentBuilder()
       .setTitle('Patients API')
       .setDescription('API RESTful para la gestión de pacientes')
@@ -21,7 +20,6 @@ async function bootstrap(): Promise<Handler> {
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('docs', app, document);
 
-    //app.enableCors();
     await app.init();
 
     const expressApp = app.getHttpAdapter().getInstance();
@@ -45,10 +43,3 @@ export const handler: Handler = async (
     const server = await firstValueFrom(serverSubject);
     return server(event, context, callback);
 }
-
-// Permite ejecutar la aplicación localmente (por ejemplo, con serverless-offline)
-/*if (process.env.NODE_ENV !== 'lambda') {
-    bootstrap().then(() => {
-    console.log('Aplicación corriendo localmente.');
-  });
-}*/
